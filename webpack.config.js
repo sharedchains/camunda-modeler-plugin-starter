@@ -29,7 +29,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'react': 'camunda-modeler-plugin-helpers/react'
+      'react': 'camunda-modeler-plugin-helpers/react',
+      '@bpmn-io/properties-panel': 'camunda-modeler-plugin-helpers/vendor/@bpmn-io/properties-panel',
+      'bpmn-js-properties-panel': 'camunda-modeler-plugin-helpers/vendor/bpmn-js-properties-panel'
     }
   },
   devtool: 'cheap-module-source-map',
@@ -47,8 +49,8 @@ module.exports = {
       ]
     }),
     new ZipPlugin({
-      filename: 'camunda-modeler-plugin-multidiagram-' + process.env.npm_package_version + '.zip',
-      pathPrefix: 'camunda-modeler-plugin-multidiagram/',
+      filename: process.env.npm_package_name + '-' + process.env.npm_package_version + '.zip',
+      pathPrefix: process.env.npm_package_name + '/',
       pathMapper: function(assetPath) {
         if (assetPath.startsWith('client') || assetPath.startsWith('style')) {
           return path.join(path.dirname(assetPath), 'client', path.basename(assetPath));
