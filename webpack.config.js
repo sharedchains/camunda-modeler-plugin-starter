@@ -1,4 +1,5 @@
 const path = require('path');
+const CamundaModelerWebpackPlugin = require('camunda-modeler-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ZipPlugin = require('zip-webpack-plugin');
 
@@ -12,30 +13,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [ '@babel/preset-react' ]
-          }
-        }
-      },
-      {
         test: /\.svg$/,
         use: 'react-svg-loader'
       }
     ]
   },
-  resolve: {
-    alias: {
-      'react': 'camunda-modeler-plugin-helpers/react',
-      '@bpmn-io/properties-panel': 'camunda-modeler-plugin-helpers/vendor/@bpmn-io/properties-panel',
-      'bpmn-js-properties-panel': 'camunda-modeler-plugin-helpers/vendor/bpmn-js-properties-panel'
-    }
-  },
   devtool: 'cheap-module-source-map',
   plugins: [
+    new CamundaModelerWebpackPlugin(),
     new CopyPlugin({
       patterns: [
         {

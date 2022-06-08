@@ -17,21 +17,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            plugins: [
-              [ '@babel/plugin-transform-react-jsx', {
-                'importSource': '@bpmn-io/properties-panel/preact',
-                'runtime': 'automatic'
-              } ]
-            ]
-          }
-        }
-      },
-      {
         test: /\.less$/i,
         use: [
 
@@ -55,9 +40,6 @@ module.exports = {
       'module',
       'main'
     ],
-    alias: {
-      'react': '@bpmn-io/properties-panel/preact/compat'
-    },
     modules: [
       'node_modules',
       absoluteBasePath
