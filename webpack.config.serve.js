@@ -1,6 +1,7 @@
 const CopyPlugin = require('copy-webpack-plugin');
 
 const path = require('path');
+const CamundaModelerWebpackPlugin = require('camunda-modeler-webpack-plugin');
 
 const basePath = '.';
 
@@ -23,8 +24,8 @@ module.exports = {
           // compiles Less to CSS
           'style-loader',
           'css-loader',
-          'less-loader',
-        ],
+          'less-loader'
+        ]
       },
       {
         test: /\.bpmn$/,
@@ -46,11 +47,12 @@ module.exports = {
     ]
   },
   plugins: [
+    new CamundaModelerWebpackPlugin({ type: 'react' }),
     new CopyPlugin({
       patterns: [
         { from: 'app/index.html', to: '.' },
         { from: 'node_modules/bpmn-js/dist/assets', to: 'vendor/bpmn-js/assets' },
-        { from: 'node_modules/bpmn-js-properties-panel/dist/assets', to: 'vendor/bpmn-js-properties-panel/assets' },
+        { from: 'node_modules/bpmn-js-properties-panel/dist/assets', to: 'vendor/bpmn-js-properties-panel/assets' }
       ]
     })
   ]
